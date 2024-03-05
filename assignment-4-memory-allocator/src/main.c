@@ -65,16 +65,16 @@ void test4(){
     assert(ptr3 != NULL);
     debug_heap(stdout, HEAP_START);
     _free(ptr2);
-    assert(header_from_data(ptr2)->is_free);
+    assert(get_header(ptr2)->is_free);
     _free(ptr1);
-    assert(header_from_data(ptr1)->is_free);
+    assert(get_header(ptr1)->is_free);
     debug_heap(stdout, HEAP_START);
     void* ptr4 = _malloc(REGION_MIN_SIZE);
     debug_heap(stdout, HEAP_START);
     _free(ptr3);
-    assert(header_from_data(ptr3)->is_free);
+    assert(get_header(ptr3)->is_free);
     _free(ptr4);
-    assert(header_from_data(ptr4)->is_free);
+    assert(get_header(ptr4)->is_free);
     debug_heap(stdout, HEAP_START);
     printf("Test №4: Passed\n\n");
 }
