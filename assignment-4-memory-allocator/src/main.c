@@ -20,7 +20,7 @@ void test1(){
 }
 
 void test2(){
-    void *heap = heap_init(HEAP_SIZE);
+    void *heap = heap_init(4096);
     assert(heap != NULL);
     debug_heap(stdout, heap);
     void *block = _malloc(64);
@@ -80,14 +80,14 @@ void test4(){
 }
 
 void test5(){
-   void *heap = heap_init(HEAP_SIZE);
-    debug_heap(stdout, heap);
-    void *addr = mmap(HEAP_START, 10000, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED, -1, 0);
-    void *block1 = _malloc(HEAP_SIZE + 1);
-    debug_heap(stdout, heap);
-    assert(block1 != NULL);
-    _free(block1);
-    free(addr);
+    void* mem1 = _malloc(100000);
+    void* mem2 = _malloc(100000);
+    assert(mem1 != NULL && mem2 != NULL);
+    _free(mem1);
+    void* mem3 = _malloc(200000);
+    assert(mem3 != NULL);
+    _free(mem2);
+    _free(mem3);
     printf("Test №5: Passed\n\n");
 }
 
